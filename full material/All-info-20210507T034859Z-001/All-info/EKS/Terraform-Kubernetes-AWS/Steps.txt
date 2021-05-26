@@ -1,0 +1,37 @@
+yum install zip unzip -y
+wget https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip
+unzip terraform_0.12.29_linux_amd64.zip
+mv terraform /usr/bin/
+terraform
+
+cd ~/.aws/
+vi credentials
+vi config
+
+mkdir terraform-eks
+Copy and pest all file form terraform-eks to /opt/terraform-eks
+#Note: need to change the subnet id
+vi provider.tf
+vi eks.tf
+vi output.tf
+terraform init
+terraform apply
+
+
+mkdir terraform-eks-kubctl
+cd terraform-eks-kubctl/
+copy all files from terraform-eks-kubctl to /opt/terraform-eks-kubctl/
+vi all.tf
+
+terraform init
+terraform apply
+
+#Considering kubectl installed in that pc
+kubeadm init --pod-network-cidr=10.100.0.0/16 --apiserver-advertise-address=192.168.139.129
+
+
+aws eks --region "us-east-1" update-kubeconfig --name "eks_cluster_tuto"
+kubectl get all -n nginx
+kubectl get service/nginx -n nginx |  awk {'print $1" " $2 " " $4 " " $5'} | column -t
+#Collect LB IP and open the IE and use with port 80, you will be able to see Nginx URL
+terraform destroy

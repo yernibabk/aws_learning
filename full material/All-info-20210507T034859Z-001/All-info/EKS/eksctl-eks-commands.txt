@@ -1,0 +1,61 @@
+eksctl create cluster --name eks-demo --nodegroup-name eks-demo-node-group --node-type t3.micro --nodes 1 --nodes-min 1 --nodes-max 2 --node-ami auto --region us-east-1
+
+#Wait for 7-10 minutes 
+
+C:\Users\Training>kubectl get all
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   11m
+
+#kubectl command should work with "C:\\Users\\Training/.kube/config", try 'kubectl get nodes'
+
+kubectl get nodes
+
+eksctl get nodegroup --cluster=eks-demo
+
+eksctl delete cluster --name=eks-demo
+
+eksctl get cluster
+
+##############################################
+#By conf file
+eksctl create cluster --config-file=eksctl-create-cluster.yaml
+
+eksctl create nodegrou --config-file=eksctl-create-ng.yaml
+##############################################
+
+#Pod test and limit
+eksctl create cluster --name pod-test --version 1.19 --node-type t3.micro --nodes 2
+
+#for namespace
+kubectl get ns
+
+kubectl get pods -n kube-system
+
+#C:\AWS-DevOPS\Traning-Vendors\Integrated Solutions\AWS Developer\Final\EKS\nginxandloadbalancer
+kubectl apply -f loadbalancer.yaml
+kubectl apply -f nginx-deployment.yaml
+
+kubectl get pods
+kubectl get svc
+
+C:\Users\Training>kubectl get svc
+NAME            TYPE           CLUSTER-IP    EXTERNAL-IP                                                              PORT(S)        AGE
+kubernetes      ClusterIP      10.100.0.1    <none>                                                                   443/TCP        78m
+nginx-service   LoadBalancer   10.100.64.3   a19b03b5267e64131bea9a10a1b67ed9-376352370.us-east-1.elb.amazonaws.com   80:31625/TCP   6m59s
+
+#Open the browser and copy and pest the EXTERNAL-IP address of LoadBalancer
+#You will see some output.
+
+kubectl delete -f loadbalancer.yaml
+kubectl delete -f nginx-deployment.yaml
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#Manage Node group
+eksctl create cluster --name demo-eks --version 1.18 --nodegroup-name demo-eks-nodes --node-type t3.micro --nodes 2 --managed
+
+kubectl get nodes
+
+kubectl get pods
+
+
+

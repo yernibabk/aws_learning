@@ -1,0 +1,176 @@
+aws cli installation
+
+https://awscli.amazonaws.com/AWSCLIV2.msi
+
+> setup aws configure
+
+aws s3 mb s3://my-demo-by-yernibabu-kommoju-01-05-2021
+
+
+launch ec2: 
+go to ec2 get the below amiid:
+Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-048f6ed62451373d9 (64-bit x86) / ami-00315de4391ce4f6d (64-bit 
+
+vpc security grup id: sg-f5be99f7
+
+get subnet id:subnet-877c05a6
+
+> aws ec2 run-instances --image-id ami-048f6ed62451373d9 --count 1 --instance-type t2.micro --key-name my-key-nv --security-group-ids sg-f5be99f7 --subnet-id subnet-877c05a6
+
+aws ec2 describe-instances
+
+reference doc: https://docs.aws.amazon.com/cli/index.html
+
+
+Layer 4 through Layer 7 are services delivered by the upper layers of the Open Systems Interconnection (OSI) communication model. Layer 4-7 services, sometimes referred to as the upper layers, support end-to-end communication between a source and destination application and are used whenever a message passes from or to a user.
+
+Layer 4, the Transport Layer, ensures end-to-end delivery of messages for both "connection-mode" data such as TCP connections and "connectionless-mode" data such as UDP datagrams. For both modes, the endpoints of communication are identified by port numbers such as TCP port 80 or UDP port 161.
+Layer 5, the Session Layer, provides services for coordinating communication between applications and synchronizing message delivery. For example, a protocol with suspend/resume or checkpoint/rollback capabilities includes session layerservices such as ITU X.225, AppleTalk or RPC.
+Layer 6, the Presentation Layer, provides services for converting data from local format (abstract syntax) into a mac
+
+A /16 network with a /24 subnet. Public subnet instances use Elastic IPs or Public IPs to access the Internet.
+
+vpc script:
+#!/bin/bash
+sudo yum update -y
+sudo yum install httpd -y
+sudo service httpd start
+sudo chkconfig httpd on
+cd /var/www/html
+echo "<html><h1>Hello and Welcome To My Webpage</h1></html>"  >  index.html
+
+direct connect:
+https://aws.amazon.com/directconnect/#:~:text=Using%20AWS%20Direct%20Connect%2C%20you,experience%20than%20internet%2Dbased%20connections.
+
+private link:
+https://awsinsider.net/articles/2017/11/13/aws-launches-privatelink.aspx#:~:text=It's%20similar%20to%20the%20AWS,which%20are%20already%20in%20AWS.
+
+Transit gateway
+https://aws.amazon.com/transit-gateway/?whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc
+
+ssh into ec2:
+ssh -i "my-new-k-nv.pem" ec2-user@3.80.41.26
+
+cost calculation:
+
+https://calculator.aws/#/
+
+materials:
+
+https://drive.google.com/drive/folders/1jO9tjPk0B8AgS042J7tjzAwDMd93k11h?usp=sharing
+
+To get root user permissions:
+> sudo -i
+
+
+mybucket-from-babu
+
+sqs with sdk java:
+https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/examples-sqs-messages.html
+
+database-1
+admin
+admin12345
+
+db commands:
+https://study.com/academy/lesson/mysql-commands-list-examples.html
+
+
+route 53:
+https://www.tutorialspoint.com/amazon_web_services/amazon_web_services_route_53.htm
+
+for i in 1 2 3 4; do while : ; do : ; done & done
+
+access key & secret:
+iam -> user -> select user -> security credentails -> create access keys-> download it -> use it for aws configure.
+
+eks steup:
+
+Install Kubectl
+https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/windows/amd64/kubectl.exe
+Install Eksctl
+https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html
+https://chocolatey.org/install
+
+Get-ExecutionPolicy
+Get-ExecutionPolicy
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+choco -?
+
+choco install -y eksctl 
+choco upgrade -y eksctl 
+eksctl version
+
+---------------------------
+
+kubectl get nodes
+
+kubectl get pods -n kube-system
+
+kubectl apply -f loadbalancer.yaml
+
+kubectl apply -f nginx-deployment.yaml
+kubectl get pods
+kubectl get svc
+kubectl delete -f loadbalancer.yaml
+kubectl delete -f nginx-deployment.yaml
+eksctl delete cluster --name pod-test
+
+https://drive.google.com/drive/folders/1ML6kqdRz8OGevRaeyXd_yV4vJoCAaLw6?usp=sharing
+
+dynamo db:
+https://docs.aws.amazon.com/code-samples/latest/catalog/code-catalog-python-example_code-dynamodb-GettingStarted.html
+
+
+build cloud9 envi for step functions impl:
+curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
+kubectl version
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
+eksctl version
+wget https://code-for-today-demo-aws-training-bykumar.s3.amazonaws.com/EKS.zip
+unzip EKS.zip 
+rm -rf EKS.zip 
+ls -tlr EKS/
+cd EKS/
+-> open eksctl-fargate-commands in cloud9 envi and follow steps.
+
+errors
+
+
+service catalog:
+
+https://docs.aws.amazon.com/servicecatalog/latest/adminguide/getstarted-iamadmin.html
+
+
+
+
+
+cdk project:
+
+sudo yum install maven
+
+https://github.com/aws-samples/aws-cdk-examples/tree/master/java/hello-world
+
+Change the version of cdk in pom.xml
+
+sudo yum install maven -y
+
+cdk reference docs:
+
+https://github.com/aws-samples/aws-cdk-examples.git
+https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-stepfunctions.WaitTime.html
+https://docs.aws.amazon.com/cdk/latest/guide/home.html
+https://cdkworkshop.com/50-java.html
+
+
+
+
+
+
+
+
+

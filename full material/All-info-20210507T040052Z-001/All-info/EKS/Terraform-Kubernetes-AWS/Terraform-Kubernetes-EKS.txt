@@ -1,0 +1,15 @@
+https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/guides/getting-started
+
+AWS EKS configuration
+https://www.padok.fr/en/blog/aws-eks-cluster-terraform
+
+Terraform Deployment commands
+https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/guides/getting-started
+
+Loadbalancer example:
+https://aws.amazon.com/premiumsupport/knowledge-center/eks-kubernetes-services-cluster/
+
+https://upcloud.com/community/stories/terraform-kubernetes-provider/
+
+
+

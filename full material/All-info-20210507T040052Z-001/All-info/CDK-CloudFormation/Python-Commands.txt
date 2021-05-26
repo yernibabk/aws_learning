@@ -1,0 +1,41 @@
+#After Cloud9 env creation use these commands
+#Below command already installed so it will display error
+#npm install -g aws-cdk
+cdk --version
+mkdir workshop-python
+cd workshop-python/
+cdk init app --language=python
+
+source .env/bin/activate
+
+pip install -r requirements.txt
+
+pip install aws-cdk.aws-s3
+
+pip install aws-cdk.aws-apigetway
+
+
+ec2-user:~/environment/workshop-python (master) $ aws configure
+AWS Access Key ID [****************FTJX]: AKIAUGHL7RABSHE
+AWS Secret Access Key [****************Yefv]: w0icJanu+YfbXMPVQ7XGoeRuQy7W29Y
+Default region name [us-east-1]: 
+Default output format [None]: 
+
+#Refresh Browser and choos Force Update Credintials
+
+cdk bootstrap
+
+cdk diff
+
+cdk deploy
+
+#For cleanup comment the code in /bin/..
+
+cdk diff
+cdk deploy
+
+#Note: s3 bucket will not destroy as need to seet delete permission
+
+
+
+

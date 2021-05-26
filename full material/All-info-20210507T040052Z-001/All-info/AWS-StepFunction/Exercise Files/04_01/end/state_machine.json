@@ -1,0 +1,82 @@
+{
+    "Comment": "Shipment processing workflow",
+    "StartAt": "Shipping Distance Estimate",
+    "States": {
+      "Shipping Distance Estimate": {
+    "Type": "Task",
+    "Resource": "arn:aws:states:::lambda:invoke",
+        "TimeoutSeconds" : 10,
+    "Parameters": {
+      "FunctionName": "arn:aws:lambda:us-east-1:946947244681:function:cloud9-EcommerceBackOffice-ZipCodeDistance-HPKPXCTWQGD2:$LATEST",
+      "Payload": {
+        "Input.$": "$"
+      }
+      
+    },
+        "ResultPath" : "$.DistanceLambda",
+      "OutputPath" : "$",
+     "Next": "In-Transit Estimate"
+  },
+      "In-Transit Estimate": {
+    "Type": "Choice",
+    "Choices": [
+    
+          {
+            "Variable": "$.DistanceLambda.Payload.body.distance",
+            "NumericLessThanEquals": 100,
+            "Next" : "One Day"
+          },
+          {
+            "Variable": "$.DistanceLambda.Payload.body.distance",
+            "NumericLessThanEquals": 500,
+            "Next" : "Three Days"
+          },
+          {
+            "Variable": "$.DistanceLambda.Payload.body.distance",
+            "NumericGreaterThan": 500,
+            "Next" : "Five Days"
+          }
+      
+       
+    ],
+    "Default": "Unknown Distance"
+  },
+      
+    "One Day": {
+    "Type": "Pass",
+     "Result": {
+      "InTransit": "1 Day"
+     },
+      "ResultPath" : "$.Payload.body.intransit",
+    "Next": "Calc Package Dimensions"
+  },
+       "Three Days": {
+    "Type": "Pass",
+     "Result": {
+      "InTransit": "3 Days"
+     },
+      "ResultPath" : "$.Payload.body.intransit",
+    "Next": "Calc Package Dimensions"
+  },
+       "Five Days": {
+    "Type": "Pass",
+     "Result": {
+      "duration": "5 Days"
+     },
+      "ResultPath" : "$.Payload.body.intransit",
+    "Next": "Calc Package Dimensions"
+  },
+       "Unknown Distance": {
+    "Type": "Pass",
+     "Result": {
+      "InTransit": "99 Days"
+     },
+      "ResultPath" : "$.InTransit",
+    "Next": "Calc Package Dimensions"
+  } ,
+      "Calc Package Dimensions": {
+  "Type": "Pass",
+  "End": true
+}
+    }
+  }

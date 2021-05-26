@@ -1,0 +1,7 @@
+https://docs.aws.amazon.com/cdk/api/latest/docs/aws-construct-library.html
+
+https://docs.aws.amazon.com/cdk/latest/guide/resources.html
+
+https://cdkworkshop.com/
+
+https://github.com/aws-samples/aws-cdk-examples

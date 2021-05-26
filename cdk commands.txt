@@ -1,0 +1,54 @@
+aws env steup:
+---------------
+nodejs is required
+npm is required
+install aws cli and check the status by  aws --version
+configure aws account (iam user only) -> aws configure
+npm install aws-cdk -g
+
+cdk commands:
+------------
+cdk version
+
+To create new cdk project:
+cdk init template --language LANGUAGE
+
+Boostrap the aws envi:(install a stack that has some cdk 
+resoures that are needed to manage the stacks within the env):
+cdk bootstrap
+
+#list the stacks in the cdk app
+cdk list  
+
+#deploy a cdk stack:
+cdk deploy
+#delete stack
+cdk destroy
+
+
+#launch the cdk documentation
+cdk docs
+#compares local and deployed stack
+cdk diff
+#generates cloudformation templates
+cdk synth
+
+#you can specify aws profiles within the cli
+cdk deploy --profile PROFILE_NAME
+
+#you can specify a specific stack for action
+cdk deploy STACK_NAME
+
+# you can specify multiple stacks for an action
+cdk deploy STACK_NAME_1 STACK_NAME_2
+
+#you can specify the action be performed against all the stacks in the app
+cdk deploy "*"
+
+#if you want to check your app for problems you can run this commands:
+cdk doctor
+
+
+CDK WORKFLOW:
+
+init(project created using cmd tool) => Bootstrap (Creates needed aws resources for CDK env) => Synth (Generates cloudformation templates from code) => Deploy (Templates are launched by cloudformation)

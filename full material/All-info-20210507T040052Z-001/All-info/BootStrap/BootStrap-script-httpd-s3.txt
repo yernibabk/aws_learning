@@ -1,0 +1,8 @@
+#!/bin/bash
+sudo yum install httpd -y
+sudo service httpd start
+sudo chkconfig httpd on
+cd /var/www/html
+echo "<html><h1>Hello and Welcome To My Webpage</h1></html>"  >  index.html
+aws s3 mb s3://my-demo-bucket-for-aws-training-in-may-3-may-7-2021
+aws s3 cp index.html s3://my-demo-bucket-for-aws-training-in-may-3-may-7-2021

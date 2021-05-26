@@ -1,0 +1,10 @@
+{
+    "PurchaseOrder": "A1234",
+    "Destination_Zip": "33166",
+    "Closest_WareHouse_Zip": "75023",
+    "Volume" : {
+        "length": 24,
+        "width" : 12,
+        "height" : 8
+    }
+  }

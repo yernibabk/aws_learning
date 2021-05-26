@@ -1,0 +1,29 @@
+##########################################
+eksctl create cluster --name fargate-demo --fargate
+
+#Wait for 25-30 minutes 
+kubectl get all
+
+kubectl get nodes
+
+eksctl get cluster
+
+kubectl get ns
+
+eksctl create fargateprofile --cluster fargate-demo --name frontend-profile --namespace frontendapp
+
+kubectl create ns frontendapp
+
+kubectl apply -f nginx-deployment.yaml -n frontendapp
+
+kubectl get all -n frontendapp -o wide
+
+kubectl describe pod nginx-deployment-66b6c48dd5-d9tlm -n frontendapp
+
+
+kubectl delete -f nginx-deployment.yaml -n frontendapp
+eksctl delete cluster --name=fargate-demo
+
+#Refrence:
+#for ingress controller as in fargate LB service type not works
+https://aws.amazon.com/blogs/opensource/kubernetes-ingress-aws-alb-ingress-controller/

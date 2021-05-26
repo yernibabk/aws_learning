@@ -1,0 +1,5 @@
+https://github.com/aws-samples/aws-cdk-examples/tree/master/java/hello-world
+
+Change the version of cdk in pom.xml
+
+sudo yum install maven -y

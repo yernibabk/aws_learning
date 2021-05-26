@@ -1,0 +1,58 @@
+# Installation of AWS CLI
+cd /opt
+mkdir aws-cli
+cd aws-cli
+sudo yum install zip unzip -y
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+#By default, the files are all installed to /usr/local/aws-cli, and a symbolic link is created in /usr/local/bin. 
+#The command includes sudo to grant write permissions to those directories.
+
+aws --version
+
+# Installation of AWS CLI end
+
+# Uninstall
+
+which aws
+/usr/local/bin/aws
+
+ls -l /usr/local/bin/aws
+
+sudo rm /usr/local/bin/aws
+sudo rm /usr/local/bin/aws_completer
+sudo rm -rf /usr/local/aws-cli
+
+# Uninstall end
+
+
+#AWS CLI Configuration
+aws configure
+
+
+#Note file will be create in 
+~/.aws/credentials
+~/.aws/config
+
+aws configure list
+
+
+#AWS CLI with S3
+
+
+aws s3 mb s3://my-demo-by-kumar-01-05-2021
+
+aws s3 ls
+
+aws s3 cp C:/AWSCLI/examples/data.txt s3://my-demo-by-kumar-01-05-2021/
+
+aws s3 cp C:/AWSCLI/examples s3://my-demo-by-kumar-01-05-2021 --recursive
+
+aws s3 cp s3://my-demo-by-kumar-01-05-2021 C:/AWSCLI/examples --recursive
+
+aws s3 sync C:/AWSCLI/examples s3://my-demo-by-kumar-01-05-2021
+
+aws s3 rb s3://my-demo-by-kumar-01-05-2021 --force
+

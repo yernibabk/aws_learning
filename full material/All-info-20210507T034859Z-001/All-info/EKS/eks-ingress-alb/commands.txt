@@ -1,0 +1,15 @@
+cd C:\AWS-DevOPS\Traning-Vendors\Integrated Solutions\AWS Developer\Final\EKS\eks-ingress-alb
+
+kubectl apply -f deploy.yaml
+
+kubectl get svc -n ingress-nginx
+
+kubectl apply -f hostname.yaml
+
+kubectl apply -f hostname-ingress.yaml
+
+more hostname-ingress.yaml
+....
+
+curl -Hhost:hostname-v1.local http://loadbalancerurlfrom-svc-output/version/
+#output will be v1, there is possibility as first time timeout

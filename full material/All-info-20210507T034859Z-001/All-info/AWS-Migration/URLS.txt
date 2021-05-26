@@ -1,0 +1,8 @@
+https://d1.awsstatic.com/whitepapers/cloud-migration-main.pdf
+https://aws.amazon.com/cloud-migration/
+https://aws.amazon.com/professional-services/CAF/
+
+AWS Cloud Adoption Framework
+
+
+https://docs.aws.amazon.com/migrationhub/latest/ug/getting-started.html
