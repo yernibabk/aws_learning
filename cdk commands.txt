@@ -52,3 +52,12 @@ cdk doctor
 CDK WORKFLOW:
 
 init(project created using cmd tool) => Bootstrap (Creates needed aws resources for CDK env) => Synth (Generates cloudformation templates from code) => Deploy (Templates are launched by cloudformation)
+
+# command to create cdk project:
+cdk init sample-app --language typescript
+
+
+Important aws sample application:
+https://github.com/aws-samples/aws-cdk-examples
+
+
